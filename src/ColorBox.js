@@ -11,7 +11,7 @@ export default class ColorBox extends Component {
   render() {
     return (
       <div className="color-box" style={{opacity: this.props.opacity}}>
-        {this.props.opacity < 0.2 ? null : <ColorBox opacity={this.props.opacity - 0.1}/>}
+        {this.props.opacity < 0.2 ? null : <ColorBox opacity={preciseMinusTenth(this.props.opacity)}/>}
       </div>
     )
   }
@@ -19,5 +19,10 @@ export default class ColorBox extends Component {
 }
 function strip(number,precision) {
   return (parseFloat(number).toPrecision(precision));
+}
+function preciseMinusTenth(number)
+{
+  const cf = 10; //correction factor
+  return ((number * cf) - (0.1 * cf))/cf
 }
 
